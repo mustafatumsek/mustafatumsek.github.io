@@ -258,6 +258,18 @@
             var captionText = document.getElementById("caption");
             captionText.innerHTML = element.alt;
         }
+         // dark mode preference saving
+    window.onload = function () {
+        const savedMode = localStorage.getItem("darkMode");
+        const button = document.getElementById("darkModeToggle");
+        if (savedMode === "enabled") {
+            document.body.classList.add("dark-mode");
+            button.textContent = "Aydınlık Mod 🌞";
+        } else {
+            button.textContent = "Karanlık Mod 🌙";
+        }
+    };
+
         function toggleDarkMode() {
     document.body.classList.toggle("dark-mode");
 
