@@ -62,6 +62,17 @@
              color: #90caf9;
             }
 
+            .hover-effect {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .hover-effect:hover {
+                transform: scale(1.05);
+                box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+                z-index: 5;
+                border-radius: 8px;
+            }
+
         </style>
     </head>
 <body class="w3-light-grey w3-content" style="max-width:1600px">
@@ -100,26 +111,26 @@
         <!-- Photo grid -->
         <div class="w3-row">
             <div class="w3-third">
-                <img src= "images/kent.jpg" . style="width:100%" onclick="onClick(this)"
+                <img src= "images/kent.jpg" class="hover-effect" style="width:100%" onclick="onClick(this)"
                     alt="Kentpark, Eskişehir">
-                <img src="images/kadikoy.png" style="width:100%" onclick="onClick(this)"
+                <img src="images/kadikoy.png" class="hover-effect" style="width:100%" onclick="onClick(this)"
                     alt="Kadıköy İskele">
-                <img src="images/ibf.png" style="width:100%" onclick="onClick(this)" alt="Paü, İİBF">
+                <img src="images/ibf.png" class="hover-effect" style="width:100%" onclick="onClick(this)" alt="Paü, İİBF">
             </div>
 
             <div class="w3-third">
-                <img src="images/esgar.jpg" style="width:100%" onclick="onClick(this)"
+                <img src="images/esgar.jpg" class="hover-effect" style="width:100%" onclick="onClick(this)"
                     alt="Eskişehir Tren Garı">
-                <img src="images/ist.png" style="width:100%" onclick="onClick(this)"
+                <img src="images/ist.png" class="hover-effect" style="width:100%" onclick="onClick(this)"
                     alt="Üsküdar-Kasımpaşa Vapuru">
-                <img src="images/resadiye.jpg" style="width:100%" onclick="onClick(this)"
+                <img src="images/resadiye.jpg" class="hover-effect" style="width:100%" onclick="onClick(this)"
                     alt="Eskişehir Reşadiye Camii">
             </div>
 
             <div class="w3-third">
-                <img src="images/esk.png" style="width:100%" onclick="onClick(this)" alt="Eskişehir">
-                <img src="images/akvaryum.png" style="width:100%" onclick="onClick(this)" alt="Akvaryum Koyu, Fethiye">
-                <img src="images/vendome.png" style="width:100%" onclick="onClick(this)" alt="Vendome Pub, Eskişehir">
+                <img src="images/esk.png" class="hover-effect" style="width:100%" onclick="onClick(this)" alt="Eskişehir">
+                <img src="images/akvaryum.png" class="hover-effect" style="width:100%" onclick="onClick(this)" alt="Akvaryum Koyu, Fethiye">
+                <img src="images/vendome.png" class="hover-effect" style="width:100%" onclick="onClick(this)" alt="Vendome Pub, Eskişehir">
             </div>
         </div>
 
@@ -172,19 +183,27 @@
             <div class="w3-content" style="max-width:600px">
                 <h4 class="w3-center"><b>İletişim</b></h4>
                 <p>Benimle iletişime geçmek isterseniz benimle bu bölüm üzerinden iletişime geçebilirsiniz!</p>
-                <form action="https://mail.google.com" target="_blank">
+                <form action="https://formsubmit.co/mtumsek22@posta.pau.edu.tr" method="POST">
                     <div class="w3-section">
                         <label>İsim</label>
-                        <input class="w3-input w3-border" type="text" name="Name" required>
+                        <input class="w3-input w3-border" type="text" name="name" required>
                     </div>
                     <div class="w3-section">
                         <label>E-posta</label>
-                        <input class="w3-input w3-border" type="text" name="Email" required>
+                        <input class="w3-input w3-border" type="email" name="email" required>
                     </div>
                     <div class="w3-section">
                         <label>Mesaj</label>
-                        <input class="w3-input w3-border" type="text" name="Message" required>
+                        <textarea class="w3-input w3-border" name="message" required></textarea>
                     </div>
+                    
+                    <!-- Botlara karşı koruma (zorunlu değil ama önerilir) -->
+                    <input type="hidden" name="_captcha" value="false">
+                    
+                    <!-- Kullanıcıyı gönderim sonrası yönlendirmek için -->
+                    <p id="formMessage" class="w3-text-green" style="display:none;">Mesajınız başarıyla gönderildi. Teşekkürler!</p>
+
+                
                     <button type="submit" class="w3-button w3-block w3-black w3-margin-bottom">Gönder</button>
                 </form>
             </div>
