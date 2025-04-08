@@ -7,6 +7,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-TWlJGcXz9FxKD9xRDNpItFG9jaHND0ZCTjMKHyE9G9e6V3TI6ghAk9LhI+1yU0wvq4cG+aHX2WLBX3JzZbbO8w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
         <style>
             body,
             h1,
@@ -142,6 +144,12 @@
                 </p>
                 <p>mail: mtumsek22@posta.pau.edu.tr</p>
                 <p>tel: 526 500 20 26</p>
+                <div class="w3-center w3-margin-top">
+                    <a href="https://www.linkedin.com/in/senin-kullanici-adin" target="_blank"
+                         class="w3-button w3-blue w3-hover-indigo w3-round-large">
+                         <i class="fab fa-linkedin"></i> LinkedIn Profilim
+                    </a>
+                </div>
                 <hr class="w3-opacity">
                 <h4 class="w3-padding-16">Teknik Beceriler</h4>
                 <p class="w3-wide">Fotoğrafçılık</p>
@@ -258,7 +266,7 @@
             var captionText = document.getElementById("caption");
             captionText.innerHTML = element.alt;
         }
-         // dark mode preference saving
+         // dark mode preference saving //prob not working
     window.onload = function () {
         const savedMode = localStorage.getItem("darkMode");
         const button = document.getElementById("darkModeToggle");
