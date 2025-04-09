@@ -151,6 +151,37 @@
             text-decoration: none;
             color: inherit;
         }
+        .tags {
+        margin-top: 30px;
+        padding: 15px;
+        background-color: #f4f4f4;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+    }
+
+    .tags p {
+        font-size: 1.1em;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .tag {
+        display: inline-block;
+        background-color: #242424;
+        color: #fff;
+        padding: 5px 15px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        border-radius: 20px;
+        text-decoration: none;
+        font-size: 0.9em;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .tag:hover {
+        background-color: #555;
+    }
+
     </style>
 </head>
 <body>
@@ -168,6 +199,7 @@
     <div class="container">
         <article>
             <h2>Işık Kullanımıyla Etkileyici Fotoğraflar Nasıl Çekilir?</h2>
+            <div class="read-time" id="read-time" style="font-size: 0.9em; color: #777; margin-bottom: 10px;"></div>
             <p class="post-meta">Published on April 9, 2025 by Mustafa Tümsek</p>
             <p>
                 Fotoğrafçılığın özü ışıktır. Işık doğru kullanıldığında, sıradan bir kare bile etkileyici bir görsel deneyime dönüşebilir. Bu yazıda, ışığı nasıl okuyacağınızı ve yönlendireceğinizi öğrenerek fotoğraflarınızı bir üst seviyeye nasıl taşıyabileceğinizi anlatıyorum.
@@ -219,7 +251,23 @@
             <p>
                 Işığı anlamadan iyi fotoğraf çekmek mümkün değildir. Bu nedenle her çekimde ışığı gözlemleyin, yönünü ve şiddetini fark edin. Işık sizin fırçanızdır, sahne ise tuvaliniz.
             </p>
-
+            <div class="share-buttons" style="margin-top: 40px; text-align: left;">
+                <p style="margin-bottom: 10px; font-weight: bold;">Bu yazıyı paylaş:</p>
+                <a href="#" id="fb-share" target="_blank" title="Facebook'ta paylaş" style="margin: 0 10px; text-decoration: none;">
+                  <img src="https://cdn-icons-png.flaticon.com/24/733/733547.png" alt="Facebook">
+                </a>
+                <a href="#" id="tw-share" target="_blank" title="Twitter'da paylaş" style="margin: 0 10px; text-decoration: none;">
+                  <img src="https://cdn-icons-png.flaticon.com/24/733/733579.png" alt="Twitter">
+                </a>
+                <a href="#" id="wa-share" target="_blank" title="WhatsApp'ta paylaş" style="margin: 0 10px; text-decoration: none;">
+                  <img src="https://cdn-icons-png.flaticon.com/24/733/733585.png" alt="WhatsApp">
+                </a>
+              </div>
+              <div class="like-section" style="text-align: left; margin-top: 20px;">
+                <button id="likeButton" style="padding: 10px 20px; font-size: 1rem; border-radius: 8px; border: none; background-color: #007BFF; color: #fff; cursor: pointer;">
+                  👍 Beğen (<span id="likeCount">0</span>)
+                </button>
+              </div>
             <a href="index.html" class="back-button">Ana Sayfaya Dön</a>
         </article>
         <section class="other-blogs">
@@ -237,6 +285,13 @@
                         <p>Kendi fotoğrafçılık hikayem.</p>
                     </a>
                 </div>
+            </div>
+            <div class="tags">
+                <p><strong>Etiketler:</strong></p>
+                <a class="tag">isik-kullanimi</a>
+                <a class="tag">fotografcilikta-isik</a>
+                <a class="tag">isiklar</a>
+                <a class="tag">fotografcilik</a>
             </div>
         </section>
     </div>
