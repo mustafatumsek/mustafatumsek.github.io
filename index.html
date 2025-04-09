@@ -158,6 +158,120 @@
             }
 
 
+            .faq-toggle-button {
+            background-color: #242424;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s ease;
+            }
+
+            .faq-toggle-button:hover {
+            background-color: #444;
+            }
+
+            .faq-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            }
+
+        .faq-content {
+        background-color: #fff;
+            margin: 100px auto;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 600px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+            }
+
+        .close-faq {
+        position: absolute;
+        top: 10px; right: 15px;
+        font-size: 24px;
+        cursor: pointer;
+        }
+
+        .faq-item {
+        margin-bottom: 15px;
+        }
+
+        .faq-question {
+        width: 100%;
+        padding: 10px;
+        font-size: 1em;
+        background-color: #f0f0f0;
+        border: none;
+        text-align: left;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+        background-color: #e0e0e0;
+        }
+
+        .faq-answer {
+        display: none;
+        padding: 10px;
+        background-color: #fafafa;
+        border-left: 3px solid #242424;
+        border-radius: 4px;
+        margin-top: 5px;
+        }
+        /* Karanlık modda popup görünümü */
+        body.dark-mode .faq-content {
+        background-color: #1e1e1e;
+        color: #f0f0f0;
+        }
+
+        body.dark-mode .faq-answer {
+        background-color: #2a2a2a;
+        border-left: 3px solid #888;
+        }
+
+        body.dark-mode .faq-question {
+        background-color: #333;
+        color: #fff;
+        }
+
+        body.dark-mode .faq-question:hover {
+        background-color: #444;
+        }
+
+        body.dark-mode .faq-toggle-button {
+        background-color: #333;
+        color: #fff;
+        }
+
+        body.dark-mode .faq-toggle-button:hover {
+        background-color: #555;
+        }
+
+        body.dark-mode .close-faq {
+        color: #fff;
+        }
+
+        body.dark-mode .faq-toggle-button {
+        background-color: #333;
+        color: #f0f0f0;
+        border: 1px solid #555;
+        }
+
+        body.dark-mode .faq-toggle-button:hover {
+        background-color: #444;
+        color: #fff;
+        border-color: #666;
+        }
+
 
         </style>
     </head>
@@ -246,7 +360,7 @@
                          class="custom-btn">
                          <i class="fab fa-linkedin"></i> LinkedIn Profilim
                      </a>
-                     <a href="https://github.com/kullanici-adin" target="_blank"
+                     <a href="https://github.com/mustafatumsek" target="_blank"
                          class="custom-btn github">
                          <i class="fab fa-github"></i> GitHub Profilim
                      </a>
@@ -309,6 +423,44 @@
                 <div class="w3-third">
                     <h3>BİLGİ</h3>
                     <p>Bu web sitesi "Web Tabanlı Teknolojiler" dersi için hazırlanmış bir okul projesidir. Profesyonel fotoğrafçılıkla alakası yoktur ve yanlış bilgiler içerebilir.</p>
+                <!-- SSS Butonu -->
+<div style="text-align: center; margin-top: 20px;">
+    <button id="openFaqBtn" class="faq-toggle-button">Sık Sorulan Sorular</button>
+  </div>
+  
+  <!-- SSS Popup Kutusu -->
+  <div id="faqModal" class="faq-modal">
+    <div class="faq-content">
+      <span id="closeFaqBtn" class="close-faq">&times;</span>
+      <h3>Sık Sorulan Sorular</h3>
+  
+      <div class="faq-item">
+        <button class="faq-question">Ne süredir fotoğrafçılık yapıyorsunuz?</button>
+        <div class="faq-answer">Yaklaşık 6 yıldır fotoğrafçılık ile ilgileniyorum.</div>
+      </div>
+  
+      <div class="faq-item">
+        <button class="faq-question">Hangi kamerayı ve ekipmanları kullanıyorsunuz?</button>
+        <div class="faq-answer">Kamera:<br>
+
+            Canon EOS R5: Full-frame sensör ve 45 megapiksel çözünürlüğü ile özellikle portre ve manzara fotoğrafçılığında harika sonuçlar alıyorum. Ayrıca 8K video çekim özelliği de bana videolarımda ekstra esneklik sağlıyor.<br>
+            
+            Sony A7R IV: Yüksek çözünürlük ve hızlı otomatik netleme özelliği ile doğal manzara ve iç mekan fotoğraflarına odaklanıyorum. Bu kameranın renk doğruluğu ve dinamik aralığı da işimi kolaylaştırıyor.<br><br>
+            
+            Lensler:<br>
+            
+            Canon RF 24-70mm f/2.8L IS USM: Çok yönlü kullanım için ideal. Portrelerden manzaralara kadar geniş bir yelpazede rahatlıkla kullanabiliyorum.<br>
+            
+            Sony FE 85mm f/1.4 GM: Portre fotoğrafçılığı için mükemmel, özellikle bokeh efekti ve arka plan bulanıklığı açısından harika sonuçlar alıyorum.<br></div>
+      </div>
+  
+      <div class="faq-item">
+        <button class="faq-question">Sizinle nasıl iletişime geçebilirim?</button>
+        <div class="faq-answer">İletişim formumu kullanabilir ya da hakkımda bölümündeki iletişim bilgileri aracılığıyla benimle iletişime geçebilirsiniz.</div>
+      </div>
+    </div>
+  </div>
+  
                 </div>
 
                 <div class="w3-third">
@@ -379,7 +531,7 @@
             var captionText = document.getElementById("caption");
             captionText.innerHTML = element.alt;
         }
-         // dark mode preference saving //prob not working
+         // dark mode preference saving 
          window.onload = function () {
         const savedMode = localStorage.getItem("darkMode");
         const button = document.getElementById("darkModeToggle");
@@ -401,7 +553,11 @@
         else {
         button.textContent = "Karanlık Mod 🌙";
         }
-        }
+        if (document.body.classList.contains("dark-mode")) {
+            localStorage.setItem("darkMode", "enabled");
+        } else {
+            localStorage.setItem("darkMode", "disabled");
+        }}
         // Scroll yukarı butonu
         window.onscroll = function () {
         const btn = document.getElementById("scrollTopBtn");
@@ -421,7 +577,32 @@
         }
 
     </script>
-
+<script>
+    // Popup aç/kapa
+    const modal = document.getElementById("faqModal");
+    const openBtn = document.getElementById("openFaqBtn");
+    const closeBtn = document.getElementById("closeFaqBtn");
+  
+    openBtn.onclick = () => modal.style.display = "block";
+    closeBtn.onclick = () => modal.style.display = "none";
+  
+    window.onclick = (e) => {
+      if (e.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  
+    // SSS sorularını aç/kapa
+    const questions = document.querySelectorAll(".faq-question");
+  
+    questions.forEach(q => {
+      q.addEventListener("click", () => {
+        const answer = q.nextElementSibling;
+        answer.style.display = answer.style.display === "block" ? "none" : "block";
+      });
+    });
+  </script>
+  
 </body>
 
 </html> 
