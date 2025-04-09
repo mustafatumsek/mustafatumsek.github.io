@@ -92,20 +92,21 @@
         }
 
         .read-time {
-    font-size: 0.9em;
-    color: #777;
-    margin-bottom: 10px;
+        font-size: 0.9em;
+        color: #777;
+        margin-bottom: 10px;
         }
 
         .share-buttons img {
-  vertical-align: middle;
-  transition: transform 0.3s;
-}
-.share-buttons img:hover {
-  transform: scale(1.2);
-}
+        vertical-align: middle;
+        transition: transform 0.3s;
+        }
 
-.other-blogs {
+        .share-buttons img:hover {
+        transform: scale(1.2);
+        }
+
+        .other-blogs {
             margin-top: 40px;
             padding: 20px;
             background-color: #f9f9f9;
@@ -158,15 +159,15 @@
         background-color: #f4f4f4;
         border-radius: 8px;
         border: 1px solid #ddd;
-    }
+        }
 
-    .tags p {
+        .tags p {
         font-size: 1.1em;
         color: #333;
         margin-bottom: 10px;
-    }
+        }
 
-    .tag {
+        .tag {
         display: inline-block;
         background-color: #242424;
         color: #fff;
@@ -177,11 +178,62 @@
         text-decoration: none;
         font-size: 0.9em;
         transition: background-color 0.3s ease-in-out;
-    }
+        }
 
-    .tag:hover {
+        .tag:hover {
         background-color: #555;
-    }
+        }
+
+        /* İlgili Yazılar */
+.related-posts {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.related-posts h3 {
+    font-size: 1.4em;
+    color: #242424;
+}
+
+.related-posts ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.related-posts li {
+    margin: 10px 0;
+}
+
+.related-posts a {
+    color: #242424;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+.related-posts a:hover {
+    color: #555;
+}
+
+/* Tüm yazıları görüntüleme butonu */
+.view-all-blogs {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #242424;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.view-all-blogs:hover {
+    background-color: #444;
+}
 
     </style>
 </head>
@@ -195,6 +247,7 @@
         <a href="index.html#">Ana Sayfa</a>
         <a href="index.html#about">Hakkımda</a>
         <a href="index.html#contact">İletişim</a>
+        <a href="blogs.html" class="active">Blog</a>
     </nav>
 
     <div class="container">
@@ -248,6 +301,7 @@
                       <p>Fotoğrafçılıkla ilgilenmeye yeni başlayanlar için tavsiyeler ve tüyolar.</p>
                   </a>
               </div>
+              <a href="blogs.html" class="view-all-blogs">Tüm Blog Yazılarını Görüntüle</a>
           </div>
           <div class="tags">
             <p><strong>Etiketler:</strong></p>
