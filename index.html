@@ -4,7 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mustafa Tumsek</title>
-  <style>
+  <!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mustafa Tümsek</title>
+   <style>
     body {
       margin: 0;
       padding: 0;
@@ -14,8 +20,16 @@
       align-items: center;
       justify-content: flex-start;
       min-height: 100vh;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: #fff;
+      color: #333;
+      background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a18cd1, #fbc2eb);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .profile {
@@ -28,15 +42,18 @@
       height: 120px;
       border-radius: 50%;
       border: 3px solid #fff;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
 
     .profile h1 {
       margin: 15px 0 5px;
       font-size: 24px;
+      color: #fff;
     }
 
     .profile p {
       font-size: 14px;
+      color: #f0f0f0;
       opacity: 0.9;
     }
 
@@ -53,24 +70,46 @@
       display: block;
       text-align: center;
       text-decoration: none;
-      background: #fff;
-      color: #333;
+      color: #fff;
       padding: 15px;
       border-radius: 12px;
       font-weight: bold;
-      transition: transform 0.2s, background 0.3s;
+      transition: transform 0.2s, box-shadow 0.3s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
     }
 
     .links a:hover {
-      background: #eaeaea;
       transform: scale(1.05);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35),
+                  0 0 12px rgba(255,255,255,0.6);
+    }
+
+    /* Gradient Butonlar */
+    .website { 
+      background: linear-gradient(135deg, #434343, #000000); 
+    }
+    .instagram { 
+      background: linear-gradient(135deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5); 
+    }
+    .cv { 
+      background: linear-gradient(135deg, #1DA1F2, #0d8ddb); 
+    }
+    .linkedin { 
+      background: linear-gradient(135deg, #0077B5, #004182); 
+    }
+    .email { 
+      background: linear-gradient(135deg, #ffb347, #ff9800); 
+    }
+    .github {
+  background: linear-gradient(135deg, #6e7681, #24292f);
     }
 
     footer {
       margin-top: auto;
       padding: 20px;
       font-size: 12px;
-      opacity: 0.7;
+      color: #fff;
+      opacity: 0.8;
     }
   </style>
 </head>
@@ -82,11 +121,11 @@
   </div>
 
   <div class="links">
-    <a href="fotografcilik.html" target="_blank">🌐 Fotoğrafçılık Web Sitesi</a>
-    <a href="https://www.linkedin.com/in/mustafatumsek" target="_blank">💼 LinkedIn</a>
-        <a href="images/cv.pdf" target="_blank">📑 CV</a>
-    <a href="https://github.com/mustafatumsek" target="_blank">💻 GitHub</a>
-    <a href="mailto:mtumsek22@posta.pau.edu.tr">✉️ E-posta</a>
+    <a href="fotografcilik.html" target="_blank" class="website">🌐 Fotoğrafçılık Web Sitesi</a>
+    <a href="https://www.linkedin.com/in/mustafatumsek" target="_blank" class="linkedin">💼 LinkedIn</a>
+        <a href="images/cv.pdf" target="_blank" class="cv">📑 CV</a>
+    <a href="https://github.com/mustafatumsek" target="_blank" class="github">💻 GitHub</a>
+    <a href="mailto:mtumsek22@posta.pau.edu.tr" class="email">✉️ E-posta</a>
   </div>
 
   <footer>

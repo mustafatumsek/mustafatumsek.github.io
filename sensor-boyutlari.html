@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fotoğrafçılık hakkında bilgiler ve kişisel deneyimler. Mustafa Tümsek'in blog sayfası.">
+    <title>Sensör Boyutları Fotoğrafçılığı Nasıl Etkiler?</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: #242424;
+            color: #fff;
+            text-align: center;
+            padding: 20px 10px;
+            font-size: 1.2em;
+        }
+        
+        nav {
+            background-color: #333;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            transition: background 0.3s ease-in-out;
+        }
+        
+        nav a:hover {
+            background: #555;
+            border-radius: 5px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        article h2 {
+            color: #242424;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+        
+        .post-meta {
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 20px;
+        }
+        
+        article p {
+            text-align: justify;
+        }
+        
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #242424;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            transition: background 0.3s;
+        }
+        
+        .back-button:hover {
+            background-color: #444;
+        }
+        
+        footer {
+            background-color: #242424;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 20px;
+        }
+
+        .read-time {
+        font-size: 0.9em;
+        color: #777;
+        margin-bottom: 10px;
+        }
+
+        .share-buttons img {
+        vertical-align: middle;
+        transition: transform 0.3s;
+        }
+
+        .share-buttons img:hover {
+        transform: scale(1.2);
+        }
+
+        .other-blogs {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .other-blogs h3 {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .recommended-blogs {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .blog-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            width: 30%;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .blog-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-item h4 {
+            font-size: 1.2em;
+            color: #242424;
+        }
+
+        .blog-item p {
+            font-size: 0.95em;
+            color: #666;
+        }
+
+        .blog-item a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .tags {
+        margin-top: 30px;
+        padding: 15px;
+        background-color: #f4f4f4;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        }
+
+        .tags p {
+        font-size: 1.1em;
+        color: #333;
+        margin-bottom: 10px;
+        }
+
+        .tag {
+        display: inline-block;
+        background-color: #242424;
+        color: #fff;
+        padding: 5px 15px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        border-radius: 20px;
+        text-decoration: none;
+        font-size: 0.9em;
+        transition: background-color 0.3s ease-in-out;
+        }
+
+        .tag:hover {
+        background-color: #555;
+        }
+
+        /* İlgili Yazılar */
+.related-posts {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.related-posts h3 {
+    font-size: 1.4em;
+    color: #242424;
+}
+
+.related-posts ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.related-posts li {
+    margin: 10px 0;
+}
+
+.related-posts a {
+    color: #242424;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+.related-posts a:hover {
+    color: #555;
+}
+
+/* Tüm yazıları görüntüleme butonu */
+.view-all-blogs {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #242424;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.view-all-blogs:hover {
+    background-color: #444;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mustafa Tümsek</h1>
+        <p>Web sitemin blog kısmı</p>
+    </header>
+
+    <nav>
+        <a href="fotografcilik.html#">Ana Sayfa</a>
+        <a href="fotografcilik.html#about">Hakkımda</a>
+        <a href="fotografcilik.html#contact">İletişim</a>
+        <a href="blogs.html" class="active">Blog</a>
+    </nav>
+
+    <div class="container">
+        <article>
+            <h2>Sensör Boyutları Fotoğrafçılığı Nasıl Etkiler?</h2>
+            <div class="read-time" id="read-time" style="font-size: 0.9em; color: #777; margin-bottom: 10px;"></div>
+
+            <p class="post-meta">Published on September 12, 2025 by Mustafa Tümsek</p>
+            Fotoğraf makinelerinin kalbinde yer alan sensörler, ışığı yakalayarak görüntüye dönüştüren en kritik bileşenlerdir. Ancak her sensör aynı değildir; boyutları, fotoğrafın kalitesini ve görünümünü doğrudan etkiler. Peki sensör boyutları fotoğrafı nasıl etkiler?
+
+1. Görüş Açısı ve Odak Uzaklığı ÇarpanıSensör boyutları küçüldükçe görüş açısı da daralır. Örneğin, APS-C sensörlü bir fotoğraf makinesi 1.5x veya 1.6x çarpanla çalışır. Bu, 50mm’lik bir lensin tam kare (Full Frame) makinelerde 50mm görünürken, APS-C’de yaklaşık 75mm gibi görünmesine yol açar. Bu durum, özellikle manzara fotoğrafçılığında geniş açı dezavantajı yaratabilir.
+
+2. Alan DerinliğiDaha büyük sensörler, aynı diyafram değerinde daha sığ alan derinliği sunar. Bu da özellikle portre fotoğrafçılığında arka planın daha estetik bulanıklaşmasını sağlar. Küçük sensörlü makinelerde ise daha geniş alan netliği elde edilir, bu da sokak ve manzara fotoğrafçılığı için avantaj olabilir.
+
+3. Görüntü Kalitesi ve Gürültü (Noise)Büyük sensörler daha fazla ışık toplar. Bu sayede düşük ışık koşullarında daha temiz, daha az gürültülü fotoğraflar elde edilir. Küçük sensörlerde ise yüksek ISO değerlerinde grenlenme daha fazla gözlemlenir.
+
+4. Dinamik AralıkSensör boyutu büyüdükçe dinamik aralık da artar. Yani gölgelerdeki ve parlak alanlardaki detaylar daha başarılı şekilde kaydedilir. Bu durum, özellikle kontrastın yüksek olduğu sahnelerde önemli avantaj sağlar.
+
+5. Lens Uyumluluğu ve Kullanım AlanlarıBüyük sensörlü makineler genellikle daha büyük ve pahalı lenslerle kullanılır. Küçük sensörlü sistemler ise daha kompakt ve taşınabilir olmalarıyla öne çıkar. Seyahat eden fotoğrafçılar için küçük sensörlü makineler pratik olabilirken, profesyonel işlerde genellikle büyük sensörler tercih edilir.
+
+SonuçSensör boyutu, fotoğrafçılıkta sadece teknik bir detay değil, aynı zamanda estetik sonuçları belirleyen önemli bir faktördür. Hangi sensör boyutunun size uygun olduğunu belirlerken, çekim alışkanlıklarınızı, ihtiyaçlarınızı ve bütçenizi göz önünde bulundurmak en doğru yaklaşım olacaktır.
+            <div class="share-buttons" style="margin-top: 40px; text-align: left;">
+                <p style="margin-bottom: 10px; font-weight: bold;">Bu yazıyı paylaş:</p>
+                <a href="#" id="fb-share" target="_blank" title="Facebook'ta paylaş" style="margin: 0 10px; text-decoration: none;">
+                  <img src="https://cdn-icons-png.flaticon.com/24/733/733547.png" alt="Facebook">
+                </a>
+                <a href="#" id="tw-share" target="_blank" title="Twitter'da paylaş" style="margin: 0 10px; text-decoration: none;">
+                  <img src="https://cdn-icons-png.flaticon.com/24/733/733579.png" alt="Twitter">
+                </a>
+                <a href="#" id="wa-share" target="_blank" title="WhatsApp'ta paylaş" style="margin: 0 10px; text-decoration: none;">
+                  <img src="https://cdn-icons-png.flaticon.com/24/733/733585.png" alt="WhatsApp">
+                </a>
+              </div>
+              <div class="like-section" style="text-align: left; margin-top: 20px;">
+                <button id="likeButton" style="padding: 10px 20px; font-size: 1rem; border-radius: 8px; border: none; background-color: #007BFF; color: #fff; cursor: pointer;">
+                  👍 Beğen (<span id="likeCount">0</span>)
+                </button>
+              </div>
+              
+            <a href="fotografcilik.html" class="back-button">Ana Sayfaya Dön</a>
+        </article>
+        <section class="other-blogs">
+          <h3>Diğer Blog Yazılarım</h3>
+          <div class="recommended-blogs">
+              <div class="blog-item">
+                  <a href="lensler-ve-ozellikleri.html">
+                      <h4>Fotoğrafçılıkta Kullanılan Lensler ve Özellikleri</h4>
+                      <p>Fotoğrafçılığa yeni başlayanlar için en iyi lensleri ve kullanım alanlarını keşfedin.</p>
+                  </a>
+              </div>
+              <div class="blog-item">
+                  <a href="yeni-baslayanlar-icin-fotografcilik-rehberi.html">
+                      <h4>Yeni Başlayanlar İçin Fotoğrafçılık Rehberi</h4>
+                      <p>Fotoğrafçılıkla ilgilenmeye yeni başlayanlar için tavsiyeler ve tüyolar.</p>
+                  </a>
+              </div>
+              <a href="blogs.html" class="view-all-blogs">Tüm Blog Yazılarını Görüntüle</a>
+          </div>
+          <div class="tags">
+            <p><strong>Etiketler:</strong></p>
+            <a class="tag">fotografcilik</a>
+            <a class="tag">photography</a>
+            <a class="tag">fotografcilik-hakkinda</a>
+            <a class="tag">fotografci</a>
+            <a class="tag">sensor</a>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+        <p>© 2024 Mustafa Tumsek Blog. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const article = document.querySelector("article");
+          const text = article.innerText || article.textContent;
+          const wordsPerMinute = 200;
+          const wordCount = text.trim().split(/\s+/).length;
+          const readTime = Math.ceil(wordCount / wordsPerMinute);
+      
+          const readTimeElement = document.getElementById("read-time");
+          readTimeElement.textContent = `Okuma süresi: ~${readTime} dakika`;
+        });
+      </script>
+      <script>  //paylaşım butonları
+        document.addEventListener("DOMContentLoaded", function () {
+          const pageUrl = encodeURIComponent(window.location.href);
+          const pageTitle = encodeURIComponent(document.querySelector("h2").textContent);
+      
+          document.getElementById("fb-share").href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+          document.getElementById("tw-share").href = `https://twitter.com/intent/tweet?text=${pageTitle}&url=${pageUrl}`;
+          document.getElementById("wa-share").href = `https://wa.me/?text=${pageTitle}%20${pageUrl}`;
+        });
+      </script>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const likeButton = document.getElementById("likeButton");
+          const likeCount = document.getElementById("likeCount");
+      
+          const blogKey = "likes_blog_fotografcilik"; // Her yazı için farklı bir key olabilir
+      
+          // LocalStorage'dan beğeni sayısını al
+          const savedLikes = localStorage.getItem(blogKey);
+          likeCount.textContent = savedLikes || 0;
+      
+          // Butona tıklanınca artır
+          likeButton.addEventListener("click", function () {
+            let currentLikes = parseInt(localStorage.getItem(blogKey)) || 0;
+      
+            if (!localStorage.getItem(blogKey + "_clicked")) {
+              currentLikes++;
+              localStorage.setItem(blogKey, currentLikes);
+              localStorage.setItem(blogKey + "_clicked", "true");
+              likeCount.textContent = currentLikes;
+              likeButton.style.backgroundColor = "#28a745"; // Yeşil renk
+              likeButton.textContent = `👍 Beğenildi (${currentLikes})`;
+            } else {
+              alert("Bu yazıyı zaten beğendiniz.");
+            }
+          });
+        });
+      </script>
+      
+      
+</body>
+</html>
