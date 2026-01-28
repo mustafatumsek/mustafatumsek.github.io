@@ -3,107 +3,542 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Berkay Ayakkabıcılık | El Yapımı Deri Ayakkabılar</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Kerim Transfer | Dalaman VIP</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* --- GENEL AYARLAR --- */
+        :root {
+            --primary-gold: #D4AF37;
+            --dark-bg: #121212;
+            --light-text: #f4f4f4;
+            --card-bg: #1e1e1e;
+            --whatsapp: #25D366;
+            --phone: #007bff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            line-height: 1.6;
+            padding-bottom: 70px;
+        }
+
+        h1, h2, h3 {
+            color: var(--primary-gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- HEADER --- */
+        header {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 15px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--primary-gold);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo { font-size: 1.5rem; font-weight: bold; }
+        .logo span { color: #fff; }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        nav ul { display: flex; gap: 20px; }
+        nav a:hover { color: var(--primary-gold); transition: 0.3s; }
+
+        /* BUTON GRUPLARI (DİL VE PARA BİRİMİ) */
+        .switch-container {
+            display: flex;
+            gap: 5px;
+        }
+        .switch-btn {
+            background: transparent;
+            border: 1px solid #444;
+            color: #aaa;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+        .switch-btn:hover, .switch-btn.active {
+            background: var(--primary-gold);
+            color: #000;
+            border-color: var(--primary-gold);
+        }
+
+        @media (max-width: 768px) {
+            nav { display: none; } 
+            header { flex-direction: row; justify-content: space-between; }
+        }
+
+        /* --- HERO --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/images/hero.webp');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; color: #ccc; margin-bottom: 30px; max-width: 600px; }
+        
+        .cta-button {
+            background-color: var(--primary-gold);
+            color: #000;
+            padding: 15px 30px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+        .cta-button:hover { background-color: #fff; }
+
+        /* --- BÖLÜMLER --- */
+        section { padding: 60px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 40px; font-size: 2rem; }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .service-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .service-card i { font-size: 3rem; color: var(--primary-gold); margin-bottom: 15px; }
+
+        .vehicle-showcase {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+        }
+        .vehicle-text { flex: 1; min-width: 300px; }
+        .vehicle-img { 
+            flex: 1; 
+            min-width: 300px; 
+            height: 300px; 
+            background-image: url('/images/vito.webp');
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            border: 2px solid var(--primary-gold);
+        }
+        .features-list li { margin: 10px 0; }
+        .features-list i { color: var(--primary-gold); margin-right: 10px; }
+
+        /* --- FİYAT TABLOSU & KUR SEÇİCİ --- */
+        .currency-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+        
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card-bg);
+        }
+        .price-table th, .price-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+        .price-table th { color: var(--primary-gold); font-size: 1.1rem; }
+        .price-table td:last-child { text-align: right; font-weight: bold; color: #fff; font-size: 1.1rem;}
+
+        /* --- FOOTER & SABİT BUTONLAR --- */
+        footer {
+            background: #000;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .sticky-buttons {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            z-index: 2000;
+        }
+        .sticky-btn {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-whatsapp { background-color: var(--whatsapp); }
+        .btn-call { background-color: var(--phone); }
+    </style>
 </head>
 <body>
 
     <header>
-        <div class="container">
+        <div class="logo">KERİM <span>TRANSFER</span></div>
+        <div class="nav-container">
             <nav>
-                <div class="logo">BERKAY AYAKKABICILIK</div>
                 <ul>
-                    <li><a href="index.html">Ana Sayfa</a></li>
-                    <li><a href="hakkimizda.html">Hakkımızda</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="iletisim.html">İletişim</a></li>
+                    <li><a href="#hakkimizda" data-lang="nav_about">Hakkımızda</a></li>
+                    <li><a href="#aracimiz" data-lang="nav_vehicle">Araç</a></li>
+                    <li><a href="#fiyatlar" data-lang="nav_prices">Fiyatlar</a></li>
+                    <li><a href="#iletisim" data-lang="nav_contact">İletişim</a></li>
                 </ul>
             </nav>
+            <div class="switch-container">
+                <button class="switch-btn active" onclick="setLanguage('tr')">TR</button>
+                <button class="switch-btn" onclick="setLanguage('en')">EN</button>
+                <button class="switch-btn" onclick="setLanguage('ru')">RU</button>
+            </div>
         </div>
     </header>
 
     <section class="hero">
-        <div class="container">
-            <h1>Her Adımda Ustalık</h1>
-            <p>1980'den beri geleneksel yöntemlerle, %100 hakiki deriden el yapımı ayakkabılar üretiyoruz.</p>
-        </div>
+        <h1 data-lang="hero_title">Dalaman & Muğla VIP Transfer</h1>
+        <p data-lang="hero_desc">Havalimanından otelinize veya evinize, Mercedes Vito aracımızla konforlu, güvenli ve size özel ulaşım hizmeti.</p>
+        <a href="https://wa.me/905000000000" class="cta-button" data-lang="btn_reserve">Rezervasyon Yap</a>
     </section>
 
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Neden Berkay Ayakkabıcılık?</h2>
-            <div class="quality-grid">
-                <div class="quality-card">
-                    <i class="fas fa-hand-holding-heart"></i>
-                    <h3>%100 El İşçiliği</h3>
-                    <p>Her bir dikiş, ustalarımızın ellerinden özenle çıkar. Fabrikasyon değil, sanat eseri.</p>
-                </div>
-                <div class="quality-card">
-                    <i class="fas fa-layer-group"></i>
-                    <h3>Birinci Sınıf Deri</h3>
-                    <p>Sadece en kaliteli, nefes alan ve zamanla karakter kazanan doğal deriler kullanıyoruz.</p>
-                </div>
-                <div class="quality-card">
-                    <i class="fas fa-shoe-prints"></i>
-                    <h3>Ömürlük Konfor</h3>
-                    <p>Ayağınızın anatomisine uygun, yıllarca eskimeden kullanabileceğiniz taban teknolojisi.</p>
-                </div>
+    <section id="hakkimizda">
+        <h2 class="section-title" data-lang="why_us">Neden Kerim Transfer?</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-plane-arrival"></i>
+                <h3 data-lang="service_1_title">Havalimanı Karşılama</h3>
+                <p data-lang="service_1_desc">Dalaman Havalimanı'nda isminizle karşılıyor, valizlerinize yardımcı oluyor ve bekletmeden yola çıkıyoruz.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-star"></i>
+                <h3 data-lang="service_2_title">VIP Konfor</h3>
+                <p data-lang="service_2_desc">Sadece size ve ailenize özel araç. Başka yolcularla paylaşım yok. TV, Klima ve deri koltuk keyfi.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3 data-lang="service_3_title">Tüm Ege'ye Ulaşım</h3>
+                <p data-lang="service_3_desc">Başta Muğla, Fethiye, Göcek, Marmaris, Kaş ve Kalkan olmak üzere dilediğiniz rotaya güvenli sürüş.</p>
             </div>
         </div>
     </section>
 
-    <section class="section" style="background-color: #f4f4f4;">
-        <div class="container">
-            <h2 class="section-title">Koleksiyonumuz</h2>
-            <div class="products-grid">
-                
-                <div class="product-card">
-                    <img src="/images/erkekbot.jpg" alt="Erkek Bot" class="product-img">
-                    <div class="product-info">
-                        <span class="product-cat">Erkek Bot</span>
-                        <h3>Anadolu Kartalı</h3>
-                        <p>Su geçirmez nubuk deri, vibram taban.</p>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <img src="/images/kadinbot.jpg" alt="Kadın Bot" class="product-img">
-                    <div class="product-info">
-                        <span class="product-cat">Kadın Bot</span>
-                        <h3>Zarif Adımlar</h3>
-                        <p>Diz altı, fermuarlı, klasik kesim.</p>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <img src="/images/erkekcizme.jpg" alt="Erkek Çizme" class="product-img">
-                    <div class="product-info">
-                        <span class="product-cat">Erkek Çizme</span>
-                        <h3>Binici Serisi</h3>
-                        <p>Özel binici tasarımı, kalın deri.</p>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <img src="/images/kadincizme.jpg" alt="Kadın Çizme" class="product-img">
-                    <div class="product-info">
-                        <span class="product-cat">Kadın Çizme</span>
-                        <h3>Şehirli Modern</h3>
-                        <p>Günlük kullanım için hafif ve şık.</p>
-                    </div>
-                </div>
-
+    <section id="aracimiz">
+        <h2 class="section-title" data-lang="vehicle_title">VIP Mercedes Vito Aracımız</h2>
+        <div class="vehicle-showcase">
+            <div class="vehicle-img"></div>
+            <div class="vehicle-text">
+                <h3 data-lang="vehicle_sub_title">Yolculuğun Keyfini Çıkarın</h3>
+                <p data-lang="vehicle_desc">Kerim Transfer olarak aracımızın temizliğine ve teknik bakımına maksimum özen gösteriyoruz. Ailenizle veya iş seyahatlerinizde prestijli ulaşım.</p>
+                <ul class="features-list">
+                    <li><i class="fas fa-check-circle"></i> <span data-lang="feat_1">Geniş Deri Koltuklar</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span data-lang="feat_2">Karşılıklı Oturma Düzeni</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span data-lang="feat_3">Buzdolabı & İkramlar</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span data-lang="feat_4">Ücretsiz Wi-Fi & Şarj</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span data-lang="feat_5">Özel Karartmalı Camlar</span></li>
+                </ul>
             </div>
+        </div>
+    </section>
+
+    <section id="fiyatlar">
+        <h2 class="section-title" data-lang="price_title">Tahmini Transfer Ücretleri</h2>
+        <p style="text-align:center; color:#ccc; margin-bottom:20px;" data-lang="price_note">Fiyatlar Dalaman Havalimanı çıkışlı tek yön tahmini fiyatlardır.</p>
+        
+        <div class="currency-wrapper">
+            <button class="switch-btn active" onclick="setCurrency('TRY')" id="btn-TRY">₺ TL</button>
+            <button class="switch-btn" onclick="setCurrency('EUR')" id="btn-EUR">€ EUR</button>
+            <button class="switch-btn" onclick="setCurrency('USD')" id="btn-USD">$ USD</button>
+            <button class="switch-btn" onclick="setCurrency('RUB')" id="btn-RUB">₽ RUB</button>
+        </div>
+
+        <table class="price-table">
+            <thead>
+                <tr>
+                    <th data-lang="table_route">Güzergah</th>
+                    <th data-lang="table_time">Süre</th>
+                    <th data-lang="table_price">Fiyat</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Dalaman -> Göcek</td>
+                    <td data-lang="time_25">25 Dk</td>
+                    <td class="price-val" data-base-price="1000">₺1000</td>
+                </tr>
+                <tr>
+                    <td>Dalaman -> Fethiye Merkez</td>
+                    <td data-lang="time_45">45 Dk</td>
+                    <td class="price-val" data-base-price="1500">₺1500</td>
+                </tr>
+                <tr>
+                    <td>Dalaman -> Ölüdeniz</td>
+                    <td data-lang="time_60">60 Dk</td>
+                    <td class="price-val" data-base-price="1800">₺1800</td>
+                </tr>
+                <tr>
+                    <td>Dalaman -> Marmaris</td>
+                    <td data-lang="time_80">1 Saat 20 Dk</td>
+                    <td class="price-val" data-base-price="2200">₺2200</td>
+                </tr>
+                <tr>
+                    <td>Dalaman -> Kaş / Kalkan</td>
+                    <td data-lang="time_105">1 Saat 45 Dk</td>
+                    <td class="price-val" data-base-price="3000">₺3000</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+<section id="yorumlar" style="background-color: #1a1a1a;">
+        <h2 class="section-title" data-lang="reviews_title">Mutlu Müşterilerimiz</h2>
+        <div class="services-grid">
+            <div class="service-card" style="text-align: left;">
+                <div style="color:var(--primary-gold); margin-bottom:10px;">
+                    <i class="fas fa-star" style="font-size:1rem;"></i>
+                    <i class="fas fa-star" style="font-size:1rem;"></i>
+                    <i class="fas fa-star" style="font-size:1rem;"></i>
+                    <i class="fas fa-star" style="font-size:1rem;"></i>
+                    <i class="fas fa-star" style="font-size:1rem;"></i>
+                </div>
+                <p data-lang="review_1_text" style="font-style: italic; color: #ccc;">"Kerim Bey tam zamanında havalimanındaydı. Araç çok temiz ve konforluydu. Ailemle çok rahat ettik."</p>
+                <h4 style="margin-top:15px; color:#fff;">Ahmet Yılmaz</h4>
+            </div>
+            <div class="service-card" style="text-align: left;">
+                 <div style="color:var(--primary-gold); margin-bottom:10px;">
+                    <i class="fas fa-star" style="font-size:1rem;"></i>
+                    <i class="fas fa-star" style="font-size:1rem;"></i>
+                    <i class="fas fa-star" style="font-size:1rem;"></i>
+                    <i class="fas fa-star" style="font-size:1rem;"></i>
+                    <i class="fas fa-star" style="font-size:1rem;"></i>
+                </div>
+                <p data-lang="review_2_text" style="font-style: italic; color: #ccc;">"Great service! The driver was very polite and safe. The vehicle is pure luxury. Highly recommended."</p>
+                <h4 style="margin-top:15px; color:#fff;">Sarah & Tom</h4>
+            </div>
+             <div class="service-card" style="text-align: left;">
+                 <div style="color:var(--primary-gold); margin-bottom:10px;">
+                    <i class="fas fa-star" style="font-size:1rem;"></i>
+                    <i class="fas fa-star" style="font-size:1rem;"></i>
+                    <i class="fas fa-star" style="font-size:1rem;"></i>
+                    <i class="fas fa-star" style="font-size:1rem;"></i>
+                    <i class="fas fa-star" style="font-size:1rem;"></i>
+                </div>
+                <p data-lang="review_3_text" style="font-style: italic; color: #ccc;">"Отличный трансфер. Водитель встретил с табличкой, помог с багажом. Очень комфортная поездка."</p>
+                <h4 style="margin-top:15px; color:#fff;">Ivan Petrov</h4>
+            </div>
+        </div>
+    </section>
+
+    <section id="sss">
+        <h2 class="section-title" data-lang="faq_title">Sıkça Sorulan Sorular</h2>
+        <div class="features-list" style="max-width: 800px; margin: 0 auto;">
+            
+            <div style="margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px;">
+                <h3 style="font-size: 1.2rem; color: #fff; margin-bottom: 5px;" data-lang="faq_1_q">Uçak rötar yaparsa ne olur?</h3>
+                <p style="color: #aaa;" data-lang="faq_1_a">Uçuş kodunuzu takip ediyoruz. Rötar olsa bile sizi ücretsiz bekliyoruz.</p>
+            </div>
+
+            <div style="margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px;">
+                <h3 style="font-size: 1.2rem; color: #fff; margin-bottom: 5px;" data-lang="faq_2_q">Ödemeyi nasıl yapabilirim?</h3>
+                <p style="color: #aaa;" data-lang="faq_2_a">Transfer sonunda araç içinde nakit (TL, USD, EUR, RUB) veya IBAN yoluyla ödeme yapabilirsiniz.</p>
+            </div>
+
+            <div style="margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px;">
+                <h3 style="font-size: 1.2rem; color: #fff; margin-bottom: 5px;" data-lang="faq_3_q">Bebek koltuğu var mı?</h3>
+                <p style="color: #aaa;" data-lang="faq_3_a">Evet, rezervasyon sırasında belirtirseniz ücretsiz bebek koltuğu sağlıyoruz.</p>
+            </div>
+
         </div>
     </section>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2025 Berkay Ayakkabıcılık. Tüm hakları saklıdır.</p>
-            <p>El emeği, göz nuru.</p>
-        </div>
+        <p>&copy; 2024 Kerim Transfer - Muğla / Dalaman VIP Service</p>
     </footer>
 
+    <div class="sticky-buttons">
+        <a href="tel:+905000000000" class="sticky-btn btn-call">
+            <i class="fas fa-phone-alt"></i> <span data-lang="btn_call">Hemen Ara</span>
+        </a>
+        <a href="https://wa.me/905000000000" class="sticky-btn btn-whatsapp">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+    </div>
+
+    <script>
+        // --- DİL AYARLARI ---
+        const translations = {
+            tr: {
+                nav_about: "Hakkımızda", nav_vehicle: "Araç", nav_prices: "Fiyatlar", nav_contact: "İletişim",
+                hero_title: "Dalaman & Muğla VIP Transfer",
+                hero_desc: "Havalimanından otelinize veya evinize, Mercedes Vito aracımızla konforlu, güvenli ve size özel ulaşım hizmeti.",
+                btn_reserve: "Rezervasyon Yap", why_us: "Neden Kerim Transfer?",
+                service_1_title: "Havalimanı Karşılama", service_1_desc: "Dalaman Havalimanı'nda isminizle karşılıyor, valizlerinize yardımcı oluyor ve bekletmeden yola çıkıyoruz.",
+                service_2_title: "VIP Konfor", service_2_desc: "Sadece size ve ailenize özel araç. Başka yolcularla paylaşım yok. TV, Klima ve deri koltuk keyfi.",
+                service_3_title: "Tüm Ege'ye Ulaşım", service_3_desc: "Başta Muğla, Fethiye, Göcek, Marmaris, Kaş ve Kalkan olmak üzere dilediğiniz rotaya güvenli sürüş.",
+                vehicle_title: "VIP Mercedes Vito Aracımız", vehicle_sub_title: "Yolculuğun Keyfini Çıkarın",
+                vehicle_desc: "Kerim Transfer olarak aracımızın temizliğine ve teknik bakımına maksimum özen gösteriyoruz. Ailenizle veya iş seyahatlerinizde prestijli ulaşım.",
+                feat_1: "Geniş Deri Koltuklar", feat_2: "Karşılıklı Oturma Düzeni", feat_3: "Buzdolabı & İkramlar",
+                feat_4: "Ücretsiz Wi-Fi & Şarj", feat_5: "Özel Karartmalı Camlar",
+                price_title: "Tahmini Transfer Ücretleri", price_note: "Fiyatlar Dalaman Havalimanı çıkışlı tek yön tahmini fiyatlardır.",
+                table_route: "Güzergah (Dalaman Çıkışlı)", table_time: "Süre", table_price: "Fiyat",
+                time_25: "25 Dk", time_45: "45 Dk", time_60: "60 Dk", time_80: "1 Sa 20 Dk", time_105: "1 Sa 45 Dk",
+                btn_call: "Hemen Ara",
+                // YENİ EKLENENLER
+                reviews_title: "Mutlu Müşterilerimiz",
+                review_1_text: "\"Kerim Bey tam zamanında havalimanındaydı. Araç çok temiz ve konforluydu. Ailemle çok rahat ettik.\"",
+                review_2_text: "\"Harika hizmet! Sürücü çok kibar ve güvenli sürüyordu. Araç tam bir lüks. Kesinlikle tavsiye ederim.\"",
+                review_3_text: "\"Mükemmel transfer. Sürücü bizi tabela ile karşıladı, bagajlara yardım etti. Çok rahat bir yolculuktu.\"",
+                faq_title: "Sıkça Sorulan Sorular",
+                faq_1_q: "Uçak rötar yaparsa ne olur?", faq_1_a: "Uçuş kodunuzu takip ediyoruz. Rötar olsa bile sizi ücretsiz bekliyoruz.",
+                faq_2_q: "Ödemeyi nasıl yapabilirim?", faq_2_a: "Transfer sonunda araç içinde nakit (TL, USD, EUR, RUB) veya IBAN yoluyla ödeme yapabilirsiniz.",
+                faq_3_q: "Bebek koltuğu var mı?", faq_3_a: "Evet, rezervasyon sırasında belirtirseniz ücretsiz bebek koltuğu sağlıyoruz."
+            },
+            en: {
+                nav_about: "About Us", nav_vehicle: "Vehicle", nav_prices: "Prices", nav_contact: "Contact",
+                hero_title: "Dalaman & Mugla VIP Transfer",
+                hero_desc: "Comfortable, safe, and private transportation from the airport to your hotel or home with our Mercedes Vito.",
+                btn_reserve: "Book Now", why_us: "Why Kerim Transfer?",
+                service_1_title: "Airport Meet & Greet", service_1_desc: "We meet you at Dalaman Airport with your name, help with your luggage, and set off without waiting.",
+                service_2_title: "VIP Comfort", service_2_desc: "Private vehicle only for you and your family. No sharing. Enjoy TV, A/C, and leather seats.",
+                service_3_title: "Transport to All Aegean", service_3_desc: "Safe driving to any route, especially Mugla, Fethiye, Gocek, Marmaris, Kas, and Kalkan.",
+                vehicle_title: "Our VIP Mercedes Vito", vehicle_sub_title: "Enjoy the Journey",
+                vehicle_desc: "At Kerim Transfer, we pay maximum attention to the cleanliness and maintenance of our vehicle. Prestigious transport for family or business.",
+                feat_1: "Spacious Leather Seats", feat_2: "Face-to-Face Seating", feat_3: "Fridge & Refreshments",
+                feat_4: "Free Wi-Fi & Charging", feat_5: "Private Tinted Windows",
+                price_title: "Estimated Transfer Rates", price_note: "Prices are estimated one-way fares from Dalaman Airport.",
+                table_route: "Route (From Dalaman)", table_time: "Duration", table_price: "Price",
+                time_25: "25 Mins", time_45: "45 Mins", time_60: "60 Mins", time_80: "1 Hr 20 Mins", time_105: "1 Hr 45 Mins",
+                btn_call: "Call Now",
+                // YENİ EKLENENLER
+                reviews_title: "Happy Customers",
+                review_1_text: "\"Mr. Kerim was at the airport right on time. The vehicle was very clean and comfortable. My family was very comfortable.\"",
+                review_2_text: "\"Great service! The driver was very polite and safe. The vehicle is pure luxury. Highly recommended.\"",
+                review_3_text: "\"Excellent transfer. The driver met us with a sign, helped with luggage. A very comfortable trip.\"",
+                faq_title: "Frequently Asked Questions",
+                faq_1_q: "What if the flight is delayed?", faq_1_a: "We track your flight code. We wait for you free of charge even if there is a delay.",
+                faq_2_q: "How can I pay?", faq_2_a: "You can pay in cash (TL, USD, EUR, RUB) inside the vehicle at the end of the transfer.",
+                faq_3_q: "Do you have a baby seat?", faq_3_a: "Yes, we provide a free baby seat if you specify during booking."
+            },
+            ru: {
+                nav_about: "О нас", nav_vehicle: "Автомобиль", nav_prices: "Цены", nav_contact: "Контакт",
+                hero_title: "Dalaman & Muğla VIP Трансфер",
+                hero_desc: "Комфортный, безопасный и индивидуальный трансфер из аэропорта в отель или домой на нашем Mercedes Vito.",
+                btn_reserve: "Забронировать", why_us: "Почему Kerim Transfer?",
+                service_1_title: "Встреча в аэропорту", service_1_desc: "Мы встречаем вас в аэропорту Даламан с табличкой, помогаем с багажом и отправляемся без ожидания.",
+                service_2_title: "VIP Комфорт", service_2_desc: "Индивидуальный автомобиль только для вас и вашей семьи. ТВ, кондиционер и кожаные сиденья.",
+                service_3_title: "По всему Эгейскому региону", service_3_desc: "Безопасная поездка в Муглу, Фетхие, Гечек, Мармарис, Каш и Калкан.",
+                vehicle_title: "Наш VIP Mercedes Vito", vehicle_sub_title: "Наслаждайтесь поездкой",
+                vehicle_desc: "В Kerim Transfer мы уделяем максимум внимания чистоте и техническому обслуживанию автомобиля. Престижный транспорт.",
+                feat_1: "Просторные кожаные сиденья", feat_2: "Сиденья лицом к лицу", feat_3: "Холодильник и напитки",
+                feat_4: "Бесплатный Wi-Fi и зарядка", feat_5: "Тонированные стекла",
+                price_title: "Примерные цены", price_note: "Цены являются ориентировочными за поездку в одну сторону из аэропорта Даламан.",
+                table_route: "Маршрут (из Даламана)", table_time: "Время", table_price: "Цена",
+                time_25: "25 мин", time_45: "45 мин", time_60: "60 мин", time_80: "1 ч 20 мин", time_105: "1 ч 45 мин",
+                btn_call: "Позвонить",
+                 // YENİ EKLENENLER
+                reviews_title: "Счастливые клиенты",
+                review_1_text: "\"Господин Керим был в аэропорту вовремя. Машина была очень чистой и комфортной. Моей семье было очень удобно.\"",
+                review_2_text: "\"Отличный сервис! Водитель был очень вежливым. Автомобиль - чистая роскошь. Очень рекомендую.\"",
+                review_3_text: "\"Отличный трансфер. Водитель встретил с табличкой, помог с багажом. Очень комфортная поездка.\"",
+                faq_title: "Часто задаваемые вопросы",
+                faq_1_q: "Что если рейс задержится?", faq_1_a: "Мы отслеживаем код вашего рейса. Мы ждем вас бесплатно, даже если есть задержка.",
+                faq_2_q: "Как я могу оплатить?", faq_2_a: "Вы можете оплатить наличными (TL, USD, EUR, RUB) в автомобиле в конце трансфера.",
+                faq_3_q: "Есть ли детское кресло?", faq_3_a: "Да, мы предоставляем бесплатное детское кресло, если вы укажете это при бронировании."
+            }
+        };
+
+        function setLanguage(lang) {
+            document.querySelectorAll('.switch-btn').forEach(btn => {
+                // Sadece dil butonlarını temizle (onclick eventindeki text'e bakarak ayırt ediyoruz)
+                if(btn.onclick.toString().includes('setLanguage')) btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            const elements = document.querySelectorAll('[data-lang]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-lang');
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+            document.documentElement.lang = lang;
+        }
+
+        // --- PARA BİRİMİ AYARLARI ---
+        
+        // ÖNEMLİ: Kurları buradan güncelleyebilirsiniz.
+        // TL baz alınmıştır. 1 TL'nin karşılığı yazılmalıdır (yaklaşık değerler).
+        // Örnek: Euro 35 TL ise, buraya 1/35 yani 0.028 yazılır.
+        // Daha kolayı: Aşağıdaki exchangeRates objesindeki "bolen" (divisor) mantığını kullanın.
+        
+        const exchangeRates = {
+            TRY: { symbol: '₺', divisor: 1 },
+            EUR: { symbol: '€', divisor: 36 }, // 1 Euro = 36 TL
+            USD: { symbol: '$', divisor: 34 }, // 1 Dolar = 34 TL
+            RUB: { symbol: '₽', divisor: 0.35 } // 1 Ruble = 0.35 TL (Yani 1 TL = 2.8 Ruble civarı)
+        };
+
+        function setCurrency(currency) {
+            // Aktif buton görselini güncelle
+            document.querySelectorAll('.currency-wrapper .switch-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + currency).classList.add('active');
+
+            // Fiyatları güncelle
+            const priceCells = document.querySelectorAll('.price-val');
+            const rateData = exchangeRates[currency];
+
+            priceCells.forEach(cell => {
+                const basePrice = parseFloat(cell.getAttribute('data-base-price'));
+                let finalPrice;
+                
+                // TL'yi seçilen kurun değerine bölüyoruz (Dolar/Euro için) veya çarpıyoruz (Ruble mantığına göre)
+                // Ancak yukarıda "divisor" (bölen) mantığı kurdum.
+                // Formül: Fiyat = TL Fiyatı / (Bölen)
+                
+                finalPrice = Math.round(basePrice / rateData.divisor);
+
+                cell.textContent = rateData.symbol + finalPrice;
+            });
+        }
+    </script>
 </body>
 </html>
