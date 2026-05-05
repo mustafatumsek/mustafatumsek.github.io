@@ -1,228 +1,472 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Mustafa Tümsek</title>
-        <link rel="shortcut icon" type="image/png" href= "images/pau.png" />
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-        <style>
-            body,
-            h1,
-            h2,
-            h3,
-            h4,
-            h5 {
-                font-family: "Raleway", sans-serif
-            }
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kerim Transfer | Dalaman VIP & Taksi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* --- GENEL AYARLAR --- */
+        :root {
+            --primary-color: #D4AF37; /* Bu renk JS ile taksi seçilince sarı olacak */
+            --dark-bg: #121212;
+            --light-text: #f4f4f4;
+            --card-bg: #1e1e1e;
+            --whatsapp: #25D366;
+            --phone: #007bff;
+        }
 
-            .w3-third img {
-                margin-bottom: -6px;
-                opacity: 0.8;
-                cursor: pointer
-            }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--dark-bg); color: var(--light-text); line-height: 1.6; padding-bottom: 70px; }
+        h1, h2, h3 { color: var(--primary-color); text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
 
-            .w3-third img:hover {
-                opacity: 1
-            }
-        </style>
-    </head>
-<body class="w3-light-grey w3-content" style="max-width:1600px">
+        /* --- SPLASH (KARŞILAMA) EKRANI --- */
+        #splash-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            background: #000;
+            z-index: 9999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+        }
+        .splash-title { color: #fff; margin-bottom: 40px; font-size: 2.5rem; text-align: center; }
+        .splash-options { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; padding: 20px; }
+        .splash-card {
+            width: 280px; height: 350px;
+            border-radius: 15px; cursor: pointer;
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 20px;
+            text-align: center; background-size: cover; background-position: center;
+            transition: 0.3s;
+        }
+        .splash-card:hover { transform: scale(1.05); }
+        .card-taksi {
+            background-image: linear-gradient(to top, rgba(0,0,0,0.9), transparent), url('/images/taksi1.avif');
+            border: 3px solid #FFCC00; color: #FFCC00;
+        }
+        .card-vito {
+            background-image: linear-gradient(to top, rgba(0,0,0,0.9), transparent), url('/images/vito3.jpg');
+            border: 3px solid #D4AF37; color: #D4AF37;
+        }
+        .splash-card h2 { font-size: 2rem; color: inherit; margin-bottom: 5px; }
+        .splash-card p { color: #fff; font-size: 1.1rem; }
 
-    <!-- Sidebar/menu -->
-    <nav class="w3-sidebar w3-bar-block w3-white w3-animate-left w3-text-grey w3-collapse w3-top w3-center"
-        style="z-index:3;width:300px;font-weight:bold" id="mySidebar"><br>
-        <h3 class="w3-padding-64 w3-center"><b>MUSTAFA<br>TÜMSEK</b></h3>
-        <a href="javascript:void(0)" onclick="w3_close()"
-            class="w3-bar-item w3-button w3-padding w3-hide-large">KAPAT</a>
-        <a href="#" onclick="w3_close()" class="w3-bar-item w3-button">PORTFOLYO</a>
-        <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">HAKKIMDA</a>
-        <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">İLETİŞİM</a>
-    </nav>
+        /* --- HEADER --- */
+        header {
+            background: rgba(0, 0, 0, 0.95); padding: 15px 20px; position: fixed; width: 100%; top: 0;
+            z-index: 1000; border-bottom: 2px solid var(--primary-color); display: flex; justify-content: space-between; align-items: center;
+            transition: border-color 0.3s;
+        }
+        .logo { font-size: 1.5rem; font-weight: bold; cursor: pointer; }
+        .logo span { color: #fff; }
+        .nav-container { display: flex; align-items: center; gap: 20px; }
+        nav ul { display: flex; gap: 20px; }
+        nav a:hover { color: var(--primary-color); transition: 0.3s; }
 
-    <!-- Top menu on small screens -->
-    <header class="w3-container w3-top w3-hide-large w3-white w3-xlarge w3-padding-16">
-        <span class="w3-left w3-padding">MUSTAFA TüMSEK</span>
-        <a href="javascript:void(0)" class="w3-right w3-button w3-white" onclick="w3_open()">☰</a>
-    </header>
+        /* BUTON GRUPLARI */
+        .switch-container { display: flex; gap: 5px; }
+        .switch-btn {
+            background: transparent; border: 1px solid #444; color: #aaa; padding: 5px 10px; cursor: pointer; font-weight: bold; font-size: 0.8rem; transition: 0.3s;
+        }
+        .switch-btn:hover, .switch-btn.active { background: var(--primary-color); color: #000; border-color: var(--primary-color); }
 
-    <!-- Overlay effect when opening sidebar on small screens -->
-    <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer"
-        title="close side menu" id="myOverlay"></div>
+        @media (max-width: 768px) { nav { display: none; } header { flex-direction: row; justify-content: space-between; } }
 
-    <!-- !PAGE CONTENT! -->
-    <div class="w3-main" style="margin-left:300px">
+        /* --- HERO --- */
+        .hero {
+            height: 100vh; background-size: cover; background-position: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; transition: background 0.5s;
+        }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 10px; color: var(--primary-color); }
+        .hero p { font-size: 1.2rem; color: #ccc; margin-bottom: 30px; max-width: 600px; }
+        .cta-button {
+            background-color: var(--primary-color); color: #000; padding: 15px 30px; font-weight: bold; border-radius: 5px; transition: 0.3s; border: none; font-size: 1rem;
+        }
+        .cta-button:hover { background-color: #fff; }
 
-        <!-- Push down content on small screens -->
-        <div class="w3-hide-large" style="margin-top:83px"></div>
+        /* --- BÖLÜMLER --- */
+        section { padding: 60px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 40px; font-size: 2rem; color: var(--primary-color); }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .service-card { background: var(--card-bg); padding: 30px; border: 1px solid #333; border-radius: 8px; text-align: center; }
+        .service-card i { font-size: 3rem; color: var(--primary-color); margin-bottom: 15px; transition: color 0.3s; }
 
-        <!-- Photo grid -->
-        <div class="w3-row">
-            <div class="w3-third">
-                <img src= "images/kent.jpg" . style="width:100%" onclick="onClick(this)"
-                    alt="Eskişehir/Kentpark">
-                <img src="images/kadikoy.png" style="width:100%" onclick="onClick(this)"
-                    alt="Kadıköy İskele">
-                <img src="images/ibf.png" style="width:100%" onclick="onClick(this)" alt="Paü, İİBF">
+        .vehicle-showcase { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; }
+        .vehicle-text { flex: 1; min-width: 300px; }
+        .vehicle-img { 
+            flex: 1; min-width: 300px; height: 300px; background-size: cover; background-position: center;
+            border-radius: 8px; border: 2px solid var(--primary-color); transition: border-color 0.3s, background 0.5s;
+        }
+        .features-list li { margin: 10px 0; }
+        .features-list i { color: var(--primary-color); margin-right: 10px; transition: color 0.3s; }
+
+        /* --- FİYAT TABLOSU & FORM --- */
+        .currency-wrapper { display: flex; justify-content: center; margin-bottom: 20px; gap: 10px; }
+        .price-table { width: 100%; border-collapse: collapse; background: var(--card-bg); }
+        .price-table th, .price-table td { padding: 15px; text-align: left; border-bottom: 1px solid #444; }
+        .price-table th { color: var(--primary-color); font-size: 1.1rem; }
+        .price-table td:last-child { text-align: right; font-weight: bold; color: #fff; font-size: 1.1rem;}
+
+        form input, form select { width: 100%; padding: 10px; background: #333; border: 1px solid #444; color: #fff; border-radius: 5px; }
+        form input:focus { border-color: var(--primary-color); outline: none; }
+
+        /* --- SABİT BUTONLAR --- */
+        .sticky-buttons { position: fixed; bottom: 0; left: 0; width: 100%; display: flex; z-index: 2000; }
+        .sticky-btn { flex: 1; padding: 15px; text-align: center; color: white; font-weight: bold; font-size: 1.1rem; display: flex; justify-content: center; align-items: center; gap: 10px; }
+        .btn-whatsapp { background-color: var(--whatsapp); }
+        .btn-call { background-color: var(--phone); }
+    </style>
+</head>
+<body>
+
+    <!-- KARŞILAMA EKRANI (SPLASH) -->
+    <div id="splash-screen">
+        <h1 class="splash-title">Kerim Transfer</h1>
+        <p style="color:#ccc; margin-bottom:20px;">Lütfen Hizmet Tipini Seçiniz / Please Select Service</p>
+        <div class="splash-options">
+            <div class="splash-card card-taksi" onclick="selectMode('taksi')">
+                <h2>Taksi</h2>
+                <p>Hızlı & Ekonomik</p>
             </div>
-
-            <div class="w3-third">
-                <img src="images/esgar.jpg" style="width:100%" onclick="onClick(this)"
-                    alt="Eskişehir Tren Garı">
-                <img src="images/ist.png" style="width:100%" onclick="onClick(this)"
-                    alt="Üsküdar-Kasımpaşa Vapuru">
-                <img src="images/resadiye.jpg" style="width:100%" onclick="onClick(this)"
-                    alt="Eskişehir Reşadiye Camii">
-            </div>
-
-            <div class="w3-third">
-                <img src="images/esk.png" style="width:100%" onclick="onClick(this)" alt="Eskişehir">
-                <img src="images/akvaryum.png" style="width:100%" onclick="onClick(this)" alt="Akvaryum Koyu, Fethiye">
-                <img src="images/vendome.png" style="width:100%" onclick="onClick(this)" alt="Vendome Pub, Eskişehir">
-            </div>
-        </div>
-
-
-        <!-- Modal for full size images on click-->
-        <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
-            <span class="w3-button w3-black w3-xlarge w3-display-topright">×</span>
-            <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
-                <img id="img01" class="w3-image">
-                <p id="caption"></p>
-            </div>
-        </div>
-
-        <!-- About section -->
-        <div class="w3-container w3-dark-grey w3-center w3-text-light-grey w3-padding-32" id="about">
-            <h4><b>Hakkımda</b></h4>
-           <img src= "images/foto.jpg" alt="Me" class="w3-image w3-padding-32" width="600" height="650">
-            <div class="w3-content w3-justify" style="max-width:600px">
-                <h4>Mustafa Tümsek</h4>
-                <p>Bu portfolyo sitesine kendi çektiğim fotoğrafları ekledim. Bu siteyi Web Tabanlı Teknolojiler dersimin ödevi için hazırladım. Bu ödev için w3schools sitesinden yararlandım.
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
-                <p>mail: mtumsek22@posta.pau.edu.tr</p>
-                <p>tel: 5353 35531</p>
-                <hr class="w3-opacity">
-                <h4 class="w3-padding-16">Teknik Beceriler</h4>
-                <p class="w3-wide">Fotoğrafçılık</p>
-                <div class="w3-white">
-                    <div class="w3-container w3-padding-small w3-center w3-grey" style="width:95%">95%</div>
-                </div>
-                <p class="w3-wide">Web Tasarım</p>
-                <div class="w3-white">
-                    <div class="w3-container w3-padding-small w3-center w3-grey" style="width:85%">85%</div>
-                </div>
-                <p class="w3-wide">Photoshop</p>
-                <div class="w3-white">
-                    <div class="w3-container w3-padding-small w3-center w3-grey" style="width:80%">80%</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Contact section -->
-        <div class="w3-container w3-light-grey w3-padding-32 w3-padding-large" id="contact">
-            <div class="w3-content" style="max-width:600px">
-                <h4 class="w3-center"><b>İletişim</b></h4>
-                <p>Benimle iletişime geçmek isterseniz benimle bu bölüm üzerinden iletişime geçebilirsiniz!</p>
-                <form action="https://mail.google.com" target="_blank">
-                    <div class="w3-section">
-                        <label>İsim</label>
-                        <input class="w3-input w3-border" type="text" name="Name" required>
-                    </div>
-                    <div class="w3-section">
-                        <label>E-posta</label>
-                        <input class="w3-input w3-border" type="text" name="Email" required>
-                    </div>
-                    <div class="w3-section">
-                        <label>Mesaj</label>
-                        <input class="w3-input w3-border" type="text" name="Message" required>
-                    </div>
-                    <button type="submit" class="w3-button w3-block w3-black w3-margin-bottom">Gönder</button>
-                </form>
+            <div class="splash-card card-vito" onclick="selectMode('vito')">
+                <h2>VIP Vito</h2>
+                <p>Lüks & Özel</p>
             </div>
         </div>
-
-        <!-- Footer -->
-        <footer class="w3-container w3-padding-32 w3-grey">
-            <div class="w3-row-padding">
-                <div class="w3-third">
-                    <h3>BİLGİ</h3>
-                    <p>Buraya ne yazacağımı bulamadım. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae,
-                        ultricies congue gravida diam non fringilla.</p>
-                </div>
-
-                <div class="w3-third">
-                    <h3>BLOG</h3>
-                    <ul class="w3-ul">
-                        <li class="w3-padding-16 w3-hover-black">
-                            <a href="blog.html" style="text-decoration: none; color: inherit;">
-                                <img src="https://www.w3schools.com/w3images/workshop.jpg" class="w3-left w3-margin-right" style="width:50px">
-                                <span class="w3-large">Fotoğrafçılık Hakkında</span><br>
-                                <span>Sed mattis nunc</span>
-                            </a>
-                        </li>
-                        <li class="w3-padding-16 w3-hover-black">
-                            <img src="https://www.w3schools.com/w3images/gondol.jpg" class="w3-left w3-margin-right" style="width:50px">
-                            <span class="w3-large">Ipsum</span><br>
-                            <span>Praes tinci sed</span>
-                        </li>
-                    </ul>
-                </div>
-                
-
-                <div class="w3-third">
-                    <h3>ETİKETLER</h3>
-                    <p>
-                        <span class="w3-tag w3-black w3-margin-bottom">Fotoğrafçılık</span> <span
-                            class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Photography</span> <span
-                            class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Eskişehir</span>
-                        <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">İstanbul</span> <span
-                            class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Ankara</span> <span
-                            class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Muğla</span>
-                        <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Denizli</span> <span
-                            class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Fotoğraf</span> <span
-                            class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Manzara</span>
-                        <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Deniz</span> <span
-                            class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Doğa</span> <span
-                            class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Şehir</span>
-                        <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Nature</span> <span
-                            class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Sea</span>
-                    </p>
-                </div>
-            </div>
-        </footer>
-
-        <div class="w3-black w3-center w3-padding-24">Teşekkürler </div>
-
-
-        <!-- End page content -->
     </div>
 
+    <!-- ANA SİTE İÇERİĞİ -->
+    <div id="main-content" style="display:none;">
+        
+        <!-- Header -->
+        <header>
+            <div class="logo" onclick="window.location.reload();">KERİM <span>TRANSFER</span></div>
+            <div class="nav-container">
+                <nav>
+                    <ul>
+                        <li><a href="#hakkimizda" data-lang="nav_about">Hakkımızda</a></li>
+                        <li><a href="#aracimiz" data-lang="nav_vehicle">Araç</a></li>
+                        <li><a href="#fiyatlar" data-lang="nav_prices">Fiyatlar</a></li>
+                    </ul>
+                </nav>
+                <div class="switch-container">
+                    <button class="switch-btn active" onclick="setLanguage('tr')">TR</button>
+                    <button class="switch-btn" onclick="setLanguage('en')">EN</button>
+                    <button class="switch-btn" onclick="setLanguage('ru')">RU</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero -->
+        <section class="hero" id="hero-section">
+            <h1 data-lang="hero_title">Başlık Yükleniyor...</h1>
+            <p data-lang="hero_desc">Açıklama yükleniyor...</p>
+            <a href="#rezervasyon" class="cta-button" data-lang="btn_reserve">Rezervasyon Yap</a>
+        </section>
+
+        <!-- Hakkımızda -->
+        <section id="hakkimizda">
+            <h2 class="section-title" data-lang="why_us">Neden Biz?</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-plane-arrival"></i>
+                    <h3 data-lang="service_1_title">Servis 1</h3>
+                    <p data-lang="service_1_desc">Açıklama 1</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-star"></i>
+                    <h3 data-lang="service_2_title">Servis 2</h3>
+                    <p data-lang="service_2_desc">Açıklama 2</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3 data-lang="service_3_title">Servis 3</h3>
+                    <p data-lang="service_3_desc">Açıklama 3</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Araç -->
+        <section id="aracimiz">
+            <h2 class="section-title" data-lang="vehicle_title">Aracımız</h2>
+            <div class="vehicle-showcase">
+                <div class="vehicle-img" id="vehicle-image"></div>
+                <div class="vehicle-text">
+                    <h3 data-lang="vehicle_sub_title">Alt Başlık</h3>
+                    <p data-lang="vehicle_desc">Araç açıklaması.</p>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check-circle"></i> <span data-lang="feat_1">Özellik 1</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-lang="feat_2">Özellik 2</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-lang="feat_3">Özellik 3</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-lang="feat_4">Özellik 4</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-lang="feat_5">Özellik 5</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fiyatlar -->
+        <section id="fiyatlar">
+            <h2 class="section-title" data-lang="price_title">Fiyatlar</h2>
+            
+            <div class="currency-wrapper">
+                <button class="switch-btn active" onclick="setCurrency('TRY')" id="btn-TRY">₺ TL</button>
+                <button class="switch-btn" onclick="setCurrency('EUR')" id="btn-EUR">€ EUR</button>
+                <button class="switch-btn" onclick="setCurrency('USD')" id="btn-USD">$ USD</button>
+                <button class="switch-btn" onclick="setCurrency('RUB')" id="btn-RUB">₽ RUB</button>
+            </div>
+
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th data-lang="table_route">Güzergah</th>
+                        <th data-lang="table_time">Süre</th>
+                        <th data-lang="table_price">Fiyat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Dalaman -> Göcek</td><td data-lang="time_25">25 Dk</td><td class="price-val">₺0</td></tr>
+                    <tr><td>Dalaman -> Fethiye</td><td data-lang="time_45">45 Dk</td><td class="price-val">₺0</td></tr>
+                    <tr><td>Dalaman -> Ölüdeniz</td><td data-lang="time_60">60 Dk</td><td class="price-val">₺0</td></tr>
+                    <tr><td>Dalaman -> Marmaris</td><td data-lang="time_80">1 Sa 20 Dk</td><td class="price-val">₺0</td></tr>
+                    <tr><td>Dalaman -> Kaş / Kalkan</td><td data-lang="time_105">1 Sa 45 Dk</td><td class="price-val">₺0</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Rezervasyon Formu -->
+        <section id="rezervasyon" style="background: #151515; border-top: 1px solid #333;">
+            <h2 class="section-title" data-lang="res_title">Hızlı Rezervasyon</h2>
+            <div style="max-width: 600px; margin: 0 auto; background: #222; padding: 30px; border-radius: 10px;">
+                <form onsubmit="sendToWhatsapp(event)">
+                    <div style="margin-bottom: 15px;">
+                        <label style="display:block; color:#ccc; margin-bottom:5px;" data-lang="lbl_name">Ad Soyad</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    
+                    <div style="display:flex; gap:10px; margin-bottom: 15px;">
+                        <div style="flex:1;">
+                            <label style="display:block; color:#ccc; margin-bottom:5px;" data-lang="lbl_from">Nereden</label>
+                            <!-- Seçmeli menü iptal edildi, yerine serbest metin girişi eklendi -->
+                            <input type="text" id="pickup" placeholder="Örn: Dalaman Havalimanı veya Otel Adı" required>
+                        </div>
+                        <div style="flex:1;">
+                            <label style="display:block; color:#ccc; margin-bottom:5px;" data-lang="lbl_to">Nereye</label>
+                            <input type="text" id="dropoff" placeholder="Örn: Fethiye" required>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display:block; color:#ccc; margin-bottom:5px;" data-lang="lbl_date">Tarih</label>
+                        <input type="datetime-local" id="date" required>
+                    </div>
+                    <button type="submit" style="width:100%; background:var(--whatsapp); color:#fff; padding:15px; border:none; font-weight:bold; font-size:1.1rem; border-radius:5px; cursor:pointer;">
+                        <i class="fab fa-whatsapp"></i> <span data-lang="btn_send_wa">WhatsApp ile Gönder</span>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Sabit Butonlar -->
+        <div class="sticky-buttons">
+            <a href="tel:+905533185090" class="sticky-btn btn-call"><i class="fas fa-phone-alt"></i> Hemen Ara</a>
+            <a href="https://wa.me/905533185090" class="sticky-btn btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
+    </div>
+
+    <!-- SİSTEM SCRİPTLERİ -->
     <script>
-        // Script to open and close sidebar
-        function w3_open() {
-            document.getElementById("mySidebar").style.display = "block";
-            document.getElementById("myOverlay").style.display = "block";
+        let currentMode = 'vito'; 
+        let currentLang = 'tr';
+        let currentCur = 'TRY';
+
+        // GÖRSELLER
+        const images = {
+            vito: {
+                hero: "url('/images/vito1.webp')",
+                vehicle: "url('/images/vito4.jpeg')"
+            },
+            taksi: {
+                 hero: "url('/images/taksi3.jpeg')",
+                vehicle: "url('/images/taksi2.jpeg')"
+            }
+        };
+
+        // FİYATLAR (Sırasıyla: Göcek, Fethiye, Ölüdeniz, Marmaris, Kaş)
+        const basePrices = {
+            vito: [1000, 1500, 1800, 2200, 3000],
+            taksi: [600, 900, 1100, 1500, 2000] // Taksi daha uygun fiyatlı
+        };
+
+        const exchangeRates = {
+            TRY: { symbol: '₺', divisor: 1 }, EUR: { symbol: '€', divisor: 36 }, 
+            USD: { symbol: '$', divisor: 34 }, RUB: { symbol: '₽', divisor: 0.35 }
+        };
+
+        // METİNLER (Vito ve Taksi için ayrı sözlükler)
+        const texts = {
+            vito: {
+                tr: {
+                    nav_about: "Hakkımızda", nav_vehicle: "VIP Araç", nav_prices: "Fiyatlar",
+                    hero_title: "Dalaman & Muğla VIP Transfer", hero_desc: "Mercedes Vito aracımızla lüks ve size özel ulaşım.",
+                    why_us: "Neden VIP Transfer?", btn_reserve: "Rezervasyon Yap",
+                    service_1_title: "Özel Karşılama", service_1_desc: "Havalimanında isminizle karşılıyoruz.",
+                    service_2_title: "VIP Konfor", service_2_desc: "TV, Klima ve deri koltuk keyfi.",
+                    service_3_title: "Özel Ulaşım", service_3_desc: "Sadece size ve ailenize özel araç.",
+                    vehicle_title: "VIP Mercedes Vito", vehicle_sub_title: "Lüks Yolculuk", vehicle_desc: "Ailenizle prestijli ulaşım.",
+                    feat_1: "Geniş Deri Koltuklar", feat_2: "Buzdolabı & İkramlar", feat_3: "Ücretsiz Wi-Fi", feat_4: "TV Sistemleri", feat_5: "Karartmalı Camlar",
+                    price_title: "VIP Transfer Ücretleri", table_route: "Güzergah", table_time: "Süre", table_price: "Fiyat",
+                    time_25: "25 Dk", time_45: "45 Dk", time_60: "60 Dk", time_80: "1 Sa 20 Dk", time_105: "1 Sa 45 Dk",
+                    res_title: "Hızlı Rezervasyon", lbl_name: "Ad Soyad", lbl_from: "Nereden", lbl_to: "Nereye", lbl_date: "Tarih ve Saat", btn_send_wa: "WhatsApp ile Gönder"
+                },
+                en: {
+                    nav_about: "About Us", nav_vehicle: "VIP Vehicle", nav_prices: "Prices",
+                    hero_title: "Dalaman & Mugla VIP Transfer", hero_desc: "Luxury and private transport with our Mercedes Vito.",
+                    why_us: "Why VIP Transfer?", btn_reserve: "Book Now",
+                    service_1_title: "Meet & Greet", service_1_desc: "We meet you at the airport with your name.",
+                    service_2_title: "VIP Comfort", service_2_desc: "Enjoy TV, A/C, and leather seats.",
+                    service_3_title: "Private Transport", service_3_desc: "Exclusive vehicle for your family.",
+                    vehicle_title: "VIP Mercedes Vito", vehicle_sub_title: "Luxury Journey", vehicle_desc: "Prestigious transport.",
+                    feat_1: "Leather Seats", feat_2: "Fridge & Drinks", feat_3: "Free Wi-Fi", feat_4: "TV Systems", feat_5: "Tinted Windows",
+                    price_title: "VIP Transfer Rates", table_route: "Route", table_time: "Duration", table_price: "Price",
+                    time_25: "25 Min", time_45: "45 Min", time_60: "60 Min", time_80: "1 Hr 20 Min", time_105: "1 Hr 45 Min",
+                    res_title: "Quick Reservation", lbl_name: "Full Name", lbl_from: "From", lbl_to: "To", lbl_date: "Date & Time", btn_send_wa: "Send via WhatsApp"
+                },
+                ru: {
+                    nav_about: "О нас", nav_vehicle: "VIP Авто", nav_prices: "Цены",
+                    hero_title: "Dalaman VIP Трансфер", hero_desc: "Роскошный индивидуальный трансфер.",
+                    why_us: "Почему VIP?", btn_reserve: "Забронировать",
+                    service_1_title: "Встреча", service_1_desc: "Встречаем с табличкой.",
+                    service_2_title: "Комфорт", service_2_desc: "ТВ, кондиционер, кожа.",
+                    service_3_title: "Индивидуально", service_3_desc: "Авто только для вас.",
+                    vehicle_title: "VIP Mercedes Vito", vehicle_sub_title: "Роскошь", vehicle_desc: "Престижный транспорт.",
+                    feat_1: "Кожаные сиденья", feat_2: "Холодильник", feat_3: "Wi-Fi", feat_4: "ТВ", feat_5: "Тонировка",
+                    price_title: "VIP Цены", table_route: "Маршрут", table_time: "Время", table_price: "Цена",
+                    time_25: "25 мин", time_45: "45 мин", time_60: "60 мин", time_80: "1 ч 20 мин", time_105: "1 ч 45 мин",
+                    res_title: "Бронирование", lbl_name: "Имя", lbl_from: "Откуда", lbl_to: "Куда", lbl_date: "Дата", btn_send_wa: "Отправить WhatsApp"
+                }
+            },
+            taksi: {
+                tr: {
+                    nav_about: "Hakkımızda", nav_vehicle: "Taksimiz", nav_prices: "Fiyatlar",
+                    hero_title: "Dalaman 7/24 Ticari Taksi", hero_desc: "Hızlı, güvenilir ve ekonomik taksi hizmeti. Anında ulaşım.",
+                    why_us: "Neden Taksi?", btn_reserve: "Taksi Çağır",
+                    service_1_title: "7/24 Hizmet", service_1_desc: "Gecenin bir yarısı bile olsa bize ulaşabilirsiniz.",
+                    service_2_title: "Ekonomik", service_2_desc: "Uygun fiyatlarla bütçenizi sarsmadan seyahat edin.",
+                    service_3_title: "Hızlı Ulaşım", service_3_desc: "Beklemeden anında yola çıkın.",
+                    vehicle_title: "Konforlu Taksimiz", vehicle_sub_title: "Güvenli Yolculuk", vehicle_desc: "Geniş bagajlı ve klimalı aracımızla hizmetinizdeyiz.",
+                    feat_1: "Geniş Bagaj Hacmi", feat_2: "Klimalı Serin Yolculuk", feat_3: "Temiz ve Bakımlı", feat_4: "Kartla Ödeme İmkanı", feat_5: "Bebek Koltuğu (İsteğe Bağlı)",
+                    price_title: "Tahmini Taksi Ücretleri", table_route: "Güzergah", table_time: "Süre", table_price: "Fiyat",
+                    time_25: "25 Dk", time_45: "45 Dk", time_60: "60 Dk", time_80: "1 Sa 20 Dk", time_105: "1 Sa 45 Dk",
+                    res_title: "Taksi Çağır", lbl_name: "Ad Soyad", lbl_from: "Nereden Alınacaksınız?", lbl_to: "Nereye Gideceksiniz?", lbl_date: "Tarih ve Saat", btn_send_wa: "WhatsApp'tan Taksi İste"
+                },
+                en: {
+                    nav_about: "About", nav_vehicle: "Our Taxi", nav_prices: "Prices",
+                    hero_title: "Dalaman 24/7 Taxi", hero_desc: "Fast, reliable and economic taxi service.",
+                    why_us: "Why Our Taxi?", btn_reserve: "Call Taxi",
+                    service_1_title: "24/7 Service", service_1_desc: "Available anytime you need.",
+                    service_2_title: "Economic", service_2_desc: "Travel without breaking the bank.",
+                    service_3_title: "Fast Transport", service_3_desc: "No waiting lines.",
+                    vehicle_title: "Comfortable Taxi", vehicle_sub_title: "Safe Journey", vehicle_desc: "Spacious trunk and A/C equipped.",
+                    feat_1: "Large Trunk", feat_2: "Air Conditioning", feat_3: "Clean & Maintained", feat_4: "Card Payment", feat_5: "Baby Seat (Optional)",
+                    price_title: "Estimated Taxi Fares", table_route: "Route", table_time: "Duration", table_price: "Price",
+                    time_25: "25 Min", time_45: "45 Min", time_60: "60 Min", time_80: "1 Hr 20 Min", time_105: "1 Hr 45 Min",
+                    res_title: "Call Taxi", lbl_name: "Full Name", lbl_from: "Pick-up", lbl_to: "Drop-off", lbl_date: "Date & Time", btn_send_wa: "Request via WhatsApp"
+                },
+                ru: {
+                    nav_about: "О нас", nav_vehicle: "Такси", nav_prices: "Цены",
+                    hero_title: "Dalaman 24/7 Такси", hero_desc: "Быстрое, надежное и недорогое такси.",
+                    why_us: "Почему Такси?", btn_reserve: "Вызвать",
+                    service_1_title: "24/7", service_1_desc: "Доступны в любое время.",
+                    service_2_title: "Недорого", service_2_desc: "Отличные цены.",
+                    service_3_title: "Быстро", service_3_desc: "Без ожидания.",
+                    vehicle_title: "Комфортное Такси", vehicle_sub_title: "Безопасно", vehicle_desc: "Большой багажник и кондиционер.",
+                    feat_1: "Большой багажник", feat_2: "Кондиционер", feat_3: "Чистота", feat_4: "Оплата картой", feat_5: "Детское кресло",
+                    price_title: "Цены на такси", table_route: "Маршрут", table_time: "Время", table_price: "Цена",
+                    time_25: "25 мин", time_45: "45 мин", time_60: "60 мин", time_80: "1 ч 20 мин", time_105: "1 ч 45 мин",
+                    res_title: "Вызвать такси", lbl_name: "Имя", lbl_from: "Откуда", lbl_to: "Куда", lbl_date: "Дата", btn_send_wa: "Заказать в WhatsApp"
+                }
+            }
+        };
+
+        // SİSTEM SEÇİMİ (VİTO MU TAKSİ Mİ)
+        function selectMode(mode) {
+            currentMode = mode;
+            document.getElementById('splash-screen').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+
+            // Renkleri Değiştir
+            if(mode === 'taksi') {
+                document.documentElement.style.setProperty('--primary-color', '#FFCC00'); // Taksi Sarısı
+            } else {
+                document.documentElement.style.setProperty('--primary-color', '#D4AF37'); // Vito Altın Rengi
+            }
+
+            // Görselleri Değiştir
+            document.getElementById('hero-section').style.backgroundImage = `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), ${images[mode].hero}`;
+            document.getElementById('vehicle-image').style.backgroundImage = images[mode].vehicle;
+
+            // Fiyatları Mode'a Göre Ayarla
+            const priceCells = document.querySelectorAll('.price-val');
+            priceCells.forEach((cell, index) => {
+                cell.setAttribute('data-base-price', basePrices[mode][index]);
+            });
+
+            // Metinleri ve Kur'u Yenile
+            setLanguage('tr');
+            setCurrency('TRY');
         }
 
-        function w3_close() {
-            document.getElementById("mySidebar").style.display = "none";
-            document.getElementById("myOverlay").style.display = "none";
+        // DİL DEĞİŞTİRİCİ
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.nav-container .switch-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const elements = document.querySelectorAll('[data-lang]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-lang');
+                if (texts[currentMode][lang][key]) {
+                    el.textContent = texts[currentMode][lang][key];
+                }
+            });
+            document.documentElement.lang = lang;
         }
 
-        // Modal Image Gallery
-        function onClick(element) {
-            document.getElementById("img01").src = element.src;
-            document.getElementById("modal01").style.display = "block";
-            var captionText = document.getElementById("caption");
-            captionText.innerHTML = element.alt;
+        // KUR DEĞİŞTİRİCİ
+        function setCurrency(currency) {
+            currentCur = currency;
+            document.querySelectorAll('.currency-wrapper .switch-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + currency).classList.add('active');
+
+            const priceCells = document.querySelectorAll('.price-val');
+            const rateData = exchangeRates[currency];
+
+            priceCells.forEach(cell => {
+                const basePrice = parseFloat(cell.getAttribute('data-base-price'));
+                const finalPrice = Math.round(basePrice / rateData.divisor);
+                cell.textContent = rateData.symbol + finalPrice;
+            });
         }
 
+        // WHATSAPP GÖNDERİM
+        function sendToWhatsapp(e) {
+            e.preventDefault();
+            var name = document.getElementById('name').value;
+            var pickup = document.getElementById('pickup').value;
+            var dropoff = document.getElementById('dropoff').value;
+            var date = document.getElementById('date').value;
+
+            var tip = currentMode === 'taksi' ? "TAKSİ" : "VIP TRANSFER";
+            var message = "*YENİ " + tip + " TALEBİ*%0A" +
+                          "👤 *İsim:* " + name + "%0A" +
+                          "🛫 *Nereden:* " + pickup + "%0A" +
+                          "📍 *Nereye:* " + dropoff + "%0A" +
+                          "📅 *Tarih:* " + date;
+
+            var phoneNumber = "+905533185090"; // Kendi numaranızı yazın
+            window.open("https://wa.me/" + phoneNumber + "?text=" + message, '_blank').focus();
+        }
     </script>
-
 </body>
-
-</html> 
+</html>
